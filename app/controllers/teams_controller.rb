@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.
+    @team = Team.new
     @coaches = Coach.all
   end
 

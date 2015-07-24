@@ -15,15 +15,16 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :coach_id %><br>
-    <%= f.number_field :coach_id %>
-  </div>
   
   <div class="field">
     <%= f.label :coach_id %>
-    <%= f.select(:coach_id) %>
+    <%= f.select :coach_id  do %>
+      <% @coaches.each do |coach| %>
+        <%= content_tag(:option, coach.name, value: coach.id) %>
+      <% end %>
+    <% end %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
