@@ -5,5 +5,15 @@
   <%= @timeslot.time %>
 </p>
 
+<h3>
+  Teams Available
+</h3>
+<ul>
+  <% @teams.each do |team| %>
+    <li>
+      <%= team.name %> - Coach <%= team.coach.name %>
+    </li>
+  <% end %>
+</ul>
 <%= link_to 'Edit', edit_timeslot_path(@timeslot) %> |
 <%= link_to 'Back', timeslots_path %>
