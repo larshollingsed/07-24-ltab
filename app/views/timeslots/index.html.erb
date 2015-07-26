@@ -13,7 +13,7 @@
   <tbody>
     <% @timeslots.each do |timeslot| %>
       <tr>
-        <td><%= timeslot.time %></td>
+        <td <% if timeslot.enough_teams? %> class="enough_teams" <% end %>><%= timeslot.time %></td>
         <td><%= link_to 'Show', timeslot %></td>
         <td><%= link_to 'Edit', edit_timeslot_path(timeslot) %></td>
         <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -21,6 +21,9 @@
     <% end %>
   </tbody>
 </table>
+<p class="enough_teams">
+  Timeslots in red have at least 4 available teams
+</p>
 
 <br>
 
