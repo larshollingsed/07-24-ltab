@@ -10,12 +10,15 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @team_timeslots = @team.timeslots
   end
 
   # GET /teams/new
   def new
     @team = Team.new
     @coaches = Coach.all
+    @timeslots = Timeslot.all
+    @teams_timeslots = @team.timeslots
   end
 
   # GET /teams/1/edit
@@ -29,7 +32,9 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
-
+    params[:team][:timeslots].each do |timeslot_id|
+      @team.timeslots << Timeslot.find(timeslot_id)
+    end
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
