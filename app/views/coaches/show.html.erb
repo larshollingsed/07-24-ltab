@@ -5,5 +5,17 @@
   <%= @coach.name %>
 </p>
 
+<% @teams.each do |team| %>
+  <h3>
+    Team Name - <%= team.name %>
+  </h3>
+  <ul>
+    <% team.timeslots.each do |timeslot| %>
+      <li>
+        <%= timeslot.time %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <%= link_to 'Edit', edit_coach_path(@coach) %> |
 <%= link_to 'Back', coaches_path %>
