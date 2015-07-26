@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :time_slots
+  resources :timeslots
   resources :teams
   resources :coaches
   # The priority is based upon order of creation: first created -> highest priority.

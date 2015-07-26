@@ -25,6 +25,22 @@
     <% end %>
   </div>
   
+  <div class="field">
+    <% @timeslots.each do |timeslot| %>
+      <%= timeslot.time %> <input type="checkbox" value="<%= timeslot.id %>" name="team[timeslots][]" <% if @teams_timeslots.ids.include?(timeslot.id) %> checked<% end %>>
+      <br>
+    <% end %>
+    
+  
+  <!-- <div class="field">
+    <%= f.label :timeslots %>
+    <%= f.check_box :timeslots do %>
+      <% @timeslots.each do |timeslot| %>
+        <%= check_box(:option, timeslot.time, value: timeslot.id) %>
+      <% end %>
+    <% end %>
+  </div> -->
+  
   <div class="actions">
     <%= f.submit %>
   </div>

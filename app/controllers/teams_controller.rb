@@ -21,6 +21,8 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @coaches = Coach.all
+    @timeslots = Timeslot.all
+    @teams_timeslots = @team.timeslots
   end
 
   # POST /teams
@@ -42,6 +44,12 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    
+    # TODO probably a better way to use ActiveRecord to clear and add all of these
+    @team.timeslots.clear
+    params[:team][:timeslots].each do |timeslot_id|
+      @team.timeslots << Timeslot.find(timeslot_id)
+    end
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
