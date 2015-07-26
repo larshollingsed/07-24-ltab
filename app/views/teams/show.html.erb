@@ -10,5 +10,16 @@
   <%= @team.coach.name %>
 </p>
 
+<h4>
+  Available times
+</h4>
+<ul>
+  <% @team_timeslots.each do |timeslot| %>
+    <li>
+      <%= timeslot.time %>
+    </li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
