@@ -26,7 +26,9 @@ class CoachesController < ApplicationController
   # POST /coaches.json
   def create
     @coach = Coach.new(coach_params)
-
+    password = BCrypt::Password.create(@coach.password)
+    @coach.password = password
+    
     respond_to do |format|
       if @coach.save
         format.html { redirect_to @coach, notice: 'Coach was successfully created.' }
@@ -70,6 +72,6 @@ class CoachesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coach_params
-      params.require(:coach).permit(:name)
+      params.require(:coach).permit(:name, :email, :password)
     end
 end
